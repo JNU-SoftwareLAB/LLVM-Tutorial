@@ -1,5 +1,5 @@
 ## Print unreachable basic blocks in LLVM programs. 
-#### [서울대 허충길 교수 강의에서 발췌](https://github.com/snu-sf-class/swpp202001/tree/master/practice/3.assn)
+#### [Excerpted from a lecture, Principles and Practices of Software Development, at SNU](https://github.com/snu-sf-class/swpp202001/tree/master/practice/3.assn)
 
 ### Assignment 3
 
