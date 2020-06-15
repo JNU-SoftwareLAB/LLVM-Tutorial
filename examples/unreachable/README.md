@@ -1,3 +1,6 @@
+## Print unreachable basic blocks in LLVM programs. 
+#### [서울대 허충길 교수 강의에서 발췌](https://github.com/snu-sf-class/swpp202001/tree/master/practice/3.assn)
+
 ### Assignment 3
 
 To submit your code:
@@ -6,65 +9,6 @@ To submit your code:
 ./package.sh
 # Now, upload submit.tar.gz to ETL
 ```
-
-#### 1. polygon.cpp
-
-You are going to fix an algorithm that evaluates the area of a polygon.
-
-The area of a polygon can be calculated by accumulating the result of cross
-products of two adjacent points.
-Let's assume that a polygon consists of vertices (x1, y1), (x2, y2), .., (xn, yn).
-For example, (0, 0), (1, 0), (1, 1), (0, 1) will describe a square with lower-left
-point located at (0, 0) and upper-right point located at (1, 1).
-
-If the points are placed in counter clockwise order (반시계방향), the area is
-equivalent to 0.5 * (cross((x1, y1), (x2, y2)) + cross((x2, y2), (x3, y3)) +
-.. + cross((xn, yn), (x1, y1))).
-Here, cross((xa, ya), (xb, yb)) is xa * yb - ya * xb.
-If the points are in clockwise order, the result is negation of the summation.
-
-For example, consider the square:
-
-- cross((0,0), (1,0)) = 0
-- cross((1,0), (1,1)) = 1
-- cross((1,1), (0,1)) = 1
-- cross((0,1), (0,0)) = 0
-
-So adding all of those & multiplying 0.5 results in 1, which is exactly the area. :)
-
-`polygon.cpp` will already have this algorithm, but it raises signed overflow in
-certain inputs. Please fix it so
-
-(1) UB Sanitizer does not raise failure
-
-(2) It prints the correct area.
-
-##### Input Conditions
-
-Each coordinate (x, y) will fit in 32bit signed integer range
-(-2147483648 ~ 2147483647).
-The calculated area will fit in 64bit unsigned integer range (`uint64_t`).
-It is guaranteed that
-
-(1) The polygon is convex
-
-(2) The calculated area will not have non-integral value (e.g. the area cannot be 0.5)
-
-(3) *the points are given in counter clockwise order*.
-
-##### How to check
-
-```
-./polygon.sh all <clang directory(e.g: ~/my-llvm-release/bin)>
-# If you want to compile only..
-./polygon.sh build <clang directory(e.g: ~/my-llvm-release/bin)>
-# If you want to run only..
-./polygon.sh run
-```
-
-##### Hints
-
-- Understand what is the difference between `int`, `int64_t`, and `uint64_t`
 
 
 #### 2. unreachable.cpp
@@ -116,6 +60,10 @@ In this case, you should not report BB1, because there exists branch instruction
 # If you want to run only..
 ./unreachable.sh run <clang directory(e.g: ~/my-llvm-release/bin)>
 ```
+
+##### Hints
+
+Read slides and codes in practice/3.materials.
 
 ##### Setting VSCode
 
