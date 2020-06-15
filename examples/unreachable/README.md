@@ -65,6 +65,10 @@ In this case, you should not report BB1, because there exists branch instruction
 
 Read slides and codes in practice/3.materials.
 
+Refer to the LLVM API document for BasicBlock, Function, StringRef, and so on.
+
+Refer to CPP references for templates. [LINK](https://en.cppreference.com/)
+
 ##### Setting VSCode
 
 Setting VSCode to successfully find header files will greatly help doing your
