@@ -100,15 +100,15 @@
    * MyUnreachablePass 클래스의 run 메소드만 구현하면 됨
    * run 메소드는 함수를 입력을 받아 (함수 단위의) 분석을 하는 구조를 가지고 있음
    * 도달 불가능한 블럭 분석 알고리즘 (unreachable-sol.cpp 소스 기준)
-     - 1. (Line 41): 함수의 시작 블록 이름 entry 가져오기
-     - 2. (Line 43-58): 함수의 각 블록에서 그 다음 블록들(successors)을 모두 모은 흐름 그래프 flowGraph 만들기 (추가로 모든 블록 이름들을 allBBs에 모으기)
+     - (1) (Line 41): 함수의 시작 블록 이름 entry 가져오기
+     - (2) (Line 43-58): 함수의 각 블록에서 그 다음 블록들(successors)을 모두 모은 흐름 그래프 flowGraph 만들기 (추가로 모든 블록 이름들을 allBBs에 모으기)
         
-       * 2-1. (Line 43): 함수의 각 블록을을 한 번씩 나열하고
-       * 2-2. (Line 46): 현재 블록 이름을 currentBB로 가져오기
-       * 2-3. (Line 48): 현재 블록 이름을 allBBs에 추가하기
-       * 2-4. (Line 50-57): 현재 블록에서 분기할 수 있는 모든 successors 블록들을 모아 flowGraph에 (현재 블록->successor 블록) 에지(edge)를 추가하기
-     - 3. (Line 60): 2단계에서 분석한 flow graph를 entry 블록에서 깊이 우선 탐색(depth-first search)으로 모든 도달 가능한 블록들을 마크하고 allBBs에 포함된 블록들 중에서 dfs 방문 마크되지 않은 블록들만 남긴다.)
-     - 4. (Line 62-65): allBBs에 dfs 방문 마크되지 않은 블록들을 하나씩 출력
+       * (2-1) (Line 43): 함수의 각 블록을을 한 번씩 나열하고
+       * (2-2) (Line 46): 현재 블록 이름을 currentBB로 가져오기
+       * (2-3) (Line 48): 현재 블록 이름을 allBBs에 추가하기
+       * (2-4) (Line 50-57): 현재 블록에서 분기할 수 있는 모든 successors 블록들을 모아 flowGraph에 (현재 블록->successor 블록) 에지(edge)를 추가하기
+     - (3) (Line 60): 2단계에서 분석한 flow graph를 entry 블록에서 깊이 우선 탐색(depth-first search)으로 모든 도달 가능한 블록들을 마크하고 allBBs에 포함된 블록들 중에서 dfs 방문 마크되지 않은 블록들만 남긴다.)
+     - (4) (Line 62-65): allBBs에 dfs 방문 마크되지 않은 블록들을 하나씩 출력
        * allBBs의 타입은 std:set이고, 기본적으로 이름 순서로 정렬되어 있음
 
 
