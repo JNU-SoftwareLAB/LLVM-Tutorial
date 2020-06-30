@@ -10,7 +10,7 @@
         # Ubuntu
         $ apt update
         $ apt install git cmake ninja-build g++ python3-distutils zlib1g-dev libtinfo-dev libxml2-dev
-       ~~~
+        ~~~
    * llvmscript를 가져와서 이 디렉토리로 이동
         ~~~
         $ git clone https://github.com/aqjune/llvmscript
@@ -75,6 +75,7 @@
     * all 옵션: 빌드하기 실행하기
     * build 옵션: 빌드만 하기
     * run 옵션: 실행만 하기
+	  - (주의) ~/work/llvm/llvmscript/my-llvm-release/bin은 각자 빌드한 llvm의 bin 디렉토리로 바꾸어주어야 함
    ~~~
    $ ./unreachable.sh all ~/work/llvm/llvmscript/my-llvm-release/bin
    ~~~
