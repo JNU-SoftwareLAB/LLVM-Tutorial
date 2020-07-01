@@ -90,3 +90,7 @@ If you're using the prebuilt binary, please add this:
 ```
 ..(your path)../clang+llvm-9.0.0-x86_64-<...>/include
 ```
+
+#### Video References about this problem
+[Basic Block](https://www.youtube.com/watch?v=m8G_S5LwlTo&feature=youtu.be&t=818)
+[Remove Dead Blocks](https://youtu.be/3QQuhL-dSys?t=738)
