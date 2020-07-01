@@ -92,5 +92,5 @@ If you're using the prebuilt binary, please add this:
 ```
 
 #### Video References about this problem
-[Basic Block](https://www.youtube.com/watch?v=m8G_S5LwlTo&feature=youtu.be&t=818)
-[Remove Dead Blocks](https://youtu.be/3QQuhL-dSys?t=738)
+- [Basic Block](https://www.youtube.com/watch?v=m8G_S5LwlTo&feature=youtu.be&t=818)
+- [Remove Dead Blocks](https://youtu.be/3QQuhL-dSys?t=738)
