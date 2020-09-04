@@ -20,8 +20,8 @@ void testCase1(){
 	cout << "testCase1" << "\n";
 	cout << "Token and Variable Class" << "\n";
 	cout << "========================" << "\n";
-	cout << "Token Numbers:       "<< Token::Tokens.size() << "\n";
-	for ( Token i : Token::Tokens){
+	cout << "Token Numbers:       "<< Token::Tokens->size() << "\n";
+	for ( Token i : *Token::Tokens){
 		cout << i.toString() << "\n";
 	}
 	cout << "Variable Numbers:    "<< Variable::Variables.size() << "\n";

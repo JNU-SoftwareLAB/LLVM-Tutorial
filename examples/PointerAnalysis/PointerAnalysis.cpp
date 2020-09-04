@@ -17,6 +17,46 @@
 
 using namespace llvm;
 
+// 문제 상황
+// 코드가 너저분함
+// Instructoin 에 이름이 없음.
+// -instnamer 패스를 적용해서 이름을 만들어야함. => Pass Manager를 사용해야한다.
+// 이렇게 해야지 Todo1이 끝날 것 같습니다.
+
+// no Name. no String
+// no name basicBlock -> then naming
+// no name instruction -> then naming
+int name = 0;
+
+int alloca_i = 0;
+
+void makeConstrations(int opcode, Instruction* instruction){
+	switch(opcode){
+		case Instruction::Alloca:{
+			// do something.
+			auto token_alloca_i = new analysis::Token("alloca-" + std::to_string(alloca_i));
+			auto variable_result = new analysis::Variable("[[variable-" + std::to_string(alloca_i) + "]]");
+			auto cons = new analysis::ConsBinomial(token_alloca_i, variable_result, analysis::OperatorCode::in);
+			alloca_i++;
+			return;
+		}
+		case Instruction::Load:{
+			// do something.
+			return;
+		}
+		case Instruction::Store:{
+			// do something.
+			return;
+		}
+		case Instruction::BitCast:{
+			// do something.
+			return;
+		}
+		default:
+			return;
+	}
+}
+
 namespace {
 
 // https://stackoverflow.com/questions/8721115/string-representation-of-llvmtype-structure
@@ -24,23 +64,35 @@ namespace {
 // llvm::raw_string_ostream rso(type_str);
 
 bool run(Function &F){
+	// Clear Tokens, Variables, Constrations
+	analysis::clear();
+	name = 0;
+	alloca_i = 0;
 	if (F.hasName()) {
 		outs() << "Function: " << F.getName() << '\n';
 
 		for (auto I = F.begin(); I != F.end(); I++){
-			BasicBlock& BB = *I;
-			outs() << "\tBasic Blocks: " << BB.getName() << '\n';
+			BasicBlock* BB = &*I;
+			if (BB->getName() == ""){
+				BB->setName( "%"+ std::to_string(name));
+				name++;
+			};
+			outs() << "\tBasic Blocks: " << BB->getName() << '\n';
 			
 			int counter = 0;
-			for(auto J = BB.begin(); J != BB.end(); J++){
-				Instruction& II = *J;
-				outs() << "\t\t" << counter << " Instruction:\t" << II.getOpcodeName(); 
-
-				for(auto K = II.op_begin(); K != II.op_end(); K++){
+			for(auto J = BB->begin(); J != BB->end(); J++){
+				Instruction* II = &*J;
+				outs() << "\t\t" << counter << " Instruction:\t" << II->getOpcodeName(); 
+				for(auto K = II->op_begin(); K != II->op_end(); K++){
 					Use& operand = *K;
+					Value* v = K->get();
 					std::string operandType = analysis::idToString(operand.get()->getType()->getTypeID());
-					outs() << "\t operand: " << operandType;
+					StringRef name = v->getName();
+					outs() << "\t name:" << name << "\t operand: " << operandType;
+					outs() << "\t getOperandNo" << operand.getOperandNo();
 				}
+
+				makeConstrations(II->getOpcode(), II);
 
 			outs() << '\n';
 				counter++;
@@ -48,6 +100,14 @@ bool run(Function &F){
 			counter = 0;
 		}
 	}
+
+	// Run Constartions
+	analysis::run();
+
+	for (auto i : analysis::getVariables()){
+		outs() << i.toStringTokens();
+	}
+	outs() << "\n";
 	return false;
 }
 

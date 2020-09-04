@@ -16,12 +16,12 @@ std::string Operand::toString(){
 }
 
 // Token
-std::set<Token> Token::Tokens = std::set<Token>();
+std::set<Token>* Token::Tokens = new std::set<Token>();
 
 Token::Token(std::string tokenName){
 	this->Type = "Token";
 	this->name = tokenName;
-	Token::Tokens.insert(*this);
+	Token::Tokens->insert(*this);
 }
 
 bool Token::operator<(const Token& e) const {
@@ -205,7 +205,7 @@ std::string ConsIf::toString(){
 
 // Utill Functions
 
-std::set<Token> getTokens(){
+std::set<Token>* getTokens(){
 	return Token::Tokens;
 }
 
@@ -225,7 +225,7 @@ void run(){
 
 }
 void clear(){
-	Token::Tokens.clear();
+	Token::Tokens->clear();
 	Variable::Variables.clear();
 	Constration::Constrations.clear();
 }

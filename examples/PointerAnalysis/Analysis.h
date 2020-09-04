@@ -17,7 +17,7 @@ class Operand{
 
 class Token : public Operand{
     public:
-        static std::set<Token> Tokens;
+        static std::set<Token>* Tokens;
         std::string name;
     public:
         Token();
@@ -89,7 +89,7 @@ void clear();
 
 std::string idToString(int id);
 std::string operandToString(int id);
-std::set<Token> getTokens();
+std::set<Token>* getTokens();
 std::set<Variable> getVariables();
 
 } // namespace
